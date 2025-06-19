@@ -66,7 +66,7 @@ All dependencies are listed in `requirements.txt`
 
 ## 🎥 Demo Preview
 
-[![Watch the demo](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)  
+[![Watch the video](https://github.com/mohakamitpatel/heart-disease-predictor/blob/main/assets/Screenshot%202025-06-18%20190147.png)](https://www.youtube.com/watch?v=n2kXr99IVzU)
 Click the image to watch a demo of the AI Interview Bot in action.
 
 ## 🚀 Future Ideas
