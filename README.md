@@ -143,13 +143,6 @@ Each question is scored out of 5 and curved slightly using a custom scale.
 
 ---
 
-## 🎥 Demo Preview
-
-[![Watch the video](https://github.com/mohakamitpatel/heart-disease-predictor/blob/main/assets/Screenshot%202025-06-18%20190147.png)](https://www.youtube.com/watch?v=n2kXr99IVzU)  
-*Click the image to watch a demo of the AI Interview Bot in action.*
-
----
-
 ## 🚀 Future Ideas
 
 - 🧑‍💻 Resume-based question customization  
