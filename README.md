@@ -1,6 +1,6 @@
 # 🤖 AI Interview Bot
 
-An intelligent AI-powered virtual interviewer that simulates real-time interview sessions. Built using Python, LLMs, and optional voice interaction, it evaluates candidate responses, provides helpful feedback, and assigns a performance grade — making it a powerful tool for interview preparation.
+An intelligent AI-powered virtual interviewer that simulates real-time interview sessions. Built using Python, LLMs (Groq), and optional voice interaction, it evaluates candidate responses, provides helpful feedback, and assigns a performance grade — making it a powerful tool for interview preparation.
 
 ---
 
@@ -12,7 +12,7 @@ An intelligent AI-powered virtual interviewer that simulates real-time interview
 - 📊 Performance grading with curved scoring logic
 - 🧠 Avoids repeated questions with memory
 - 📁 Session history saved in `.json` and `.csv`
-- 🧩 Modular question bank via `questions.csv`
+- 🧩 Modular question bank via `full_interview_questions_dataset.csv`
 - 🔐 Secure API integration using `.env`
 
 ---
@@ -21,8 +21,8 @@ An intelligent AI-powered virtual interviewer that simulates real-time interview
 
 1. Clone the repository  
    ```bash
-   git clone https://github.com/yourusername/ai-interview-bot.git
-   cd ai-interview-bot
+   git clone https://github.com/yourusername/AI_Interview_Bot.git
+   cd AI_Interview_Bot
    ```
 
 2. (Optional) Create and activate a virtual environment  
@@ -36,7 +36,7 @@ An intelligent AI-powered virtual interviewer that simulates real-time interview
    pip install -r requirements.txt
    ```
 
-4. Create a `.env` file with your Groq API key  
+4. Create a `.env` file from the `.env.example` and add your Groq API key  
    ```env
    GROQ_API_KEY=your_groq_api_key_here
    ```
@@ -46,17 +46,32 @@ An intelligent AI-powered virtual interviewer that simulates real-time interview
 ## 🗂 Project Structure
 
 ```
-📦 ai-interview-bot/
-├── main.py                      → Entry point for running the bot
+📦 AI_Interview_Bot/
+├── run.py                          → Entry point for running the bot
 ├── core/
-│   ├── question_selector.py     → Chooses non-repeating questions
-│   └── feedback_generator.py    → Handles Groq API feedback and scoring
-├── questions.csv                → Customizable interview questions
+│   ├── answer_rating.py
+│   ├── feedback_generator.py
+│   ├── memory.py
+│   ├── performance_tracker.py
+│   ├── question_selector.py
+│   └── voice_input.py
+│
+├── utils/
+│   └── helpers.py
+│
+├── data/
+│   └── full_interview_questions_dataset.csv
+│
 ├── sessions/
-│   └── session_*.json           → Saved detailed session transcripts
-├── session_log.csv              → Summary log of all interview attempts
-├── .env                         → Stores your Groq API key
-└── README.md                    → You're reading it!
+│   └── session_*.json             → Detailed transcripts per run (optional)
+├── session_log.csv                → Overall session performance (optional)
+├── .env                           → Your Groq API key (excluded via .gitignore)
+├── .env.example                   → Template for setting up your own `.env`
+├── .gitignore
+├── requirements.txt
+├── test_feed.py                   → (Optional) test script
+├── Checkenv.py                    → (Optional) env checker
+└── README.md
 ```
 
 ---
@@ -65,25 +80,18 @@ An intelligent AI-powered virtual interviewer that simulates real-time interview
 
 1. Run the bot  
    ```bash
-   python main.py
+   python run.py
    ```
 
 2. Choose:
    - Interview type: `technical`, `hr`, or `behavioral`
    - Mode: `text` or `voice`
 
-3. Answer 5 questions (asked based on role & difficulty)
+3. Answer 5 questions, with LLM-generated feedback and a per-answer score
 
-4. After each answer:
-   - You'll receive feedback from a Groq-powered LLM
-   - A score from 0–5 is assigned
-
-5. At the end:
-   - You'll see your total score, average per question, and a final grade
-
-6. Logs:
-   - JSON transcript saved in `sessions/`
-   - Summary saved in `session_log.csv`
+4. At the end:
+   - Total score and grade are displayed
+   - Feedback is saved in `.json` and `.csv`
 
 ---
 
@@ -118,7 +126,7 @@ Grade: Good
 | 50–69%    | ⚖️ Average           |
 | Below 50% | 🚧 Needs Improvement |
 
-Each question is scored out of 5, and the total score is curved and scaled accordingly.
+Each question is scored out of 5 and curved slightly using a custom scale.
 
 ---
 
@@ -129,7 +137,7 @@ Each question is scored out of 5, and the total score is curved and scaled accor
 - `SpeechRecognition` *(for voice mode)*  
 - `pyttsx3` *(for voice output)*  
 - `pyaudio` *(required for microphone input)*  
-- `openai` *(optional if switching models)*
+- `openai` *(optional if switching LLM providers)*
 
 > All are listed in `requirements.txt`
 
@@ -147,9 +155,9 @@ Each question is scored out of 5, and the total score is curved and scaled accor
 - 🧑‍💻 Resume-based question customization  
 - 🎙️ TTS voices with emotion support  
 - 📊 Performance tracking over time (charts, graphs)
-- 🌍 Multi-language question/answer support  
-- 🌐 Web interface with Streamlit or Flask  
-- 🤖 OpenAI/Gemini dynamic follow-up questions
+- 🌍 Multi-language support  
+- 🌐 Streamlit/Flask-based web UI  
+- 🤖 Gemini/GPT dynamic follow-up and realism
 
 ---
 
